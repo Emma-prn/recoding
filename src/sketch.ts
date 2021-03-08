@@ -34,36 +34,36 @@ function draw() {
     }
     console.log(colorLine);
     colorLine.push('#dcd0c0','#dcd0c0','#dcd0c0');
-		for (var x = 0; x < width; x += width/lineSquare) {
-            let indexColorCurrent = -1;
-            if (suite == 2) {
-              let colorSquare = random(colorLine);
-              indexColor = colorLine.indexOf(colorSquare);
-              fill(colorSquare);
-              stroke(colorSquare);
-            }
-            else if(suite == 1) {
-              let colorSquare = random(colorLine);
-              indexColorCurrent = colorLine.indexOf(colorSquare);
-              while (indexColorCurrent != indexColor) {
-                colorSquare = random(colorLine);
-                indexColorCurrent = colorLine.indexOf(colorSquare);
-              }
-              fill(colorSquare);
-              stroke(colorSquare);
-            }
-            else if(suite == 0) {
-              let colorSquare = random(colorLine);
-              indexColorCurrent = colorLine.indexOf(colorSquare);
-              while (indexColorCurrent == indexColor){
-                colorSquare = random(colorLine);
-                indexColorCurrent = colorLine.indexOf(colorSquare);
-              }
-              fill(colorSquare);
-              stroke(colorSquare);
-            }
-            rect(x,y,width/lineSquare,height/lineSquare);
-            suite = Math.floor((random() * 1) +0.5);
+    for (var x = 0; x < width; x += width/lineSquare) {
+      let indexColorCurrent = -1;
+      if (suite == 2) {
+        let colorSquare = random(colorLine);
+        indexColor = colorLine.indexOf(colorSquare);
+        fill(colorSquare);
+        stroke(colorSquare);
+      }
+      else if(suite == 1) {
+        let colorSquare = random(colorLine);
+        indexColorCurrent = colorLine.indexOf(colorSquare);
+        while (indexColorCurrent != indexColor) {
+          colorSquare = random(colorLine);
+          indexColorCurrent = colorLine.indexOf(colorSquare);
+        }
+        fill(colorSquare);
+        stroke(colorSquare);
+      }
+      else if(suite == 0) {
+        let colorSquare = random(colorLine);
+        indexColorCurrent = colorLine.indexOf(colorSquare);
+        while (indexColorCurrent == indexColor){
+          colorSquare = random(colorLine);
+          indexColorCurrent = colorLine.indexOf(colorSquare);
+        }
+        fill(colorSquare);
+        stroke(colorSquare);
+      }
+      rect(x,y,width/lineSquare,height/lineSquare);
+      suite = Math.floor((random() * 1) +0.5);
 		}
 	}
 }
