@@ -4,9 +4,11 @@
 
 const gui = new dat.GUI()
 const params = {
+    Nb_Square_per_Line : 39,
     Random_Seed: 0,
     Download_Image: () => save(),
 }
+gui.add(params,"Nb_Square_per_Line",5,39,1)
 gui.add(params,"Random_Seed",0,10,1)
 gui.add(params, "Download_Image")
 
@@ -23,7 +25,7 @@ const colors = [
 function draw() {
 	background('#dcd0c0');
   randomSeed(params.Random_Seed);
-  let lineSquare = 39;
+  let lineSquare = params.Nb_Square_per_Line;
 	for (var y = 0; y < height; y += height/lineSquare) {
     let colorLine = [];
     let suite = 2;

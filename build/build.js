@@ -1,8 +1,10 @@
 var gui = new dat.GUI();
 var params = {
+    Nb_Square_per_Line: 39,
     Random_Seed: 0,
     Download_Image: function () { return save(); },
 };
+gui.add(params, "Nb_Square_per_Line", 5, 39, 1);
 gui.add(params, "Random_Seed", 0, 10, 1);
 gui.add(params, "Download_Image");
 var colors = [
@@ -14,7 +16,7 @@ var colors = [
 function draw() {
     background('#dcd0c0');
     randomSeed(params.Random_Seed);
-    var lineSquare = 39;
+    var lineSquare = params.Nb_Square_per_Line;
     for (var y = 0; y < height; y += height / lineSquare) {
         var colorLine = [];
         var suite = 2;
