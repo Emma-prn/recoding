@@ -28,25 +28,33 @@ function draw() {
         for (var x = 0; x < width; x += width / lineSquare) {
             var r = random();
             var colorSquare = void 0;
-            if (r < 0.7) {
+            if (r < 0.6) {
                 colorSquare = '#dcd0c0';
             }
-            else if (r < 0.9) {
+            else if (r < 0.7) {
                 colorSquare = '#130e12';
             }
-            else {
+            else if (r < 0.8) {
+                colorSquare = '#c4a41d';
+            }
+            else if (r < 0.9) {
                 colorSquare = '#c0231a';
+            }
+            else {
+                colorSquare = '#3a5bdc';
+            }
+            if (x == 12 * width / lineSquare) {
+                if (r < 0.8) {
+                    colorSquare = '#130e12';
+                }
+            }
+            else if (x == 13 * width / lineSquare) {
+                if (r < 0.8) {
+                    colorSquare = '#c4a41d';
+                }
             }
             fill(colorSquare);
             stroke(colorSquare);
-            if (x == 12 * width / lineSquare) {
-                fill('#130e12');
-                stroke('#130e12');
-            }
-            else if (x == 13 * width / lineSquare) {
-                fill('#c4a41d');
-                stroke('#c4a41d');
-            }
             rect(x, y, width / lineSquare, height / lineSquare);
         }
     }

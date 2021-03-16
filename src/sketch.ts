@@ -37,25 +37,35 @@ function draw() {
     for (var x = 0; x < width; x += width/lineSquare) {
       const r = random()
       let colorSquare;
-      if (r < 0.7) {
-        colorSquare = '#dcd0c0' // Proba de 0.7 d'avoir du blanc
+      if (r < 0.6) {
+        colorSquare = '#dcd0c0'; // Proba d'avoir du blanc
       }
-      else if (r < 0.9) {
-        colorSquare = '#130e12' // Proba de 0.9 - 0.7 = 0.2 d'avoir du noir
+      else if (r < 0.7) {
+        colorSquare = '#130e12'; // Proba d'avoir du noir
+      }
+      else if (r < 0.8)
+      {
+        colorSquare = '#c4a41d'; // Proba d'avoir du jaune
+      }
+      else if (r < 0.9)
+      {
+        colorSquare = '#c0231a'; // Proba d'avoir du rouge
       }
       else {
-        colorSquare = '#c0231a' // Proba de 1 - 0.9 = 0.1 d'avoir du rouge
+        colorSquare = '#3a5bdc'; // Proba d'avoir du bleue
+      }
+      if (x == 12 * width/lineSquare) {
+        if (r < 0.8) {
+          colorSquare = '#130e12';
+        }
+      }
+      else if (x == 13 * width/lineSquare) {
+        if (r < 0.8) {
+          colorSquare = '#c4a41d';
+        }
       }
       fill(colorSquare);
       stroke(colorSquare);
-      if (x == 12 * width/lineSquare) {
-        fill('#130e12');
-        stroke('#130e12');
-      }
-      else if (x == 13 * width/lineSquare) {
-        fill('#c4a41d');
-        stroke('#c4a41d');
-      }
       rect(x,y,width/lineSquare,height/lineSquare);
 		}
 	}
