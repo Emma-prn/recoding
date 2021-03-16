@@ -37,7 +37,7 @@ function draw() {
     colorLine.push('#dcd0c0','#dcd0c0','#dcd0c0');
     for (var x = 0; x < width; x += width/lineSquare) {
       let indexColorCurrent = -1;
-      if (suite == 2) {
+      if (x == 0) {
         let colorSquare = random(colorLine);
         indexColor = colorLine.indexOf(colorSquare);
         fill(colorSquare);
@@ -63,9 +63,13 @@ function draw() {
         fill(colorSquare);
         stroke(colorSquare);
       }
+      else if (x == width/3) {
+        fill('#130e12');
+        stroke('#130e12');
+      }
       rect(x,y,width/lineSquare,height/lineSquare);
       //suite = Math.floor((random() * 1) +0.5);
-      suite = Math.floor(random(39))>= 7 ? 1 : 0;
+      suite = Math.floor(random(50))>= 18 ? 1 : 0;
 		}
 	}
 }
