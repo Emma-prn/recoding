@@ -15,7 +15,7 @@ var colors = [
     '#dcd0c0',
 ];
 function draw() {
-    background('#dcd0c0');
+    background(colors[4]);
     randomSeed(params.Random_Seed);
     var lineSquare = params.Nb_Square_per_Line;
     for (var y = 0; y < height; y += height / lineSquare) {
@@ -27,37 +27,41 @@ function draw() {
             var oldColor = void 0;
             if (use_palette_1) {
                 if (r < 0.7) {
-                    colorSquare = '#dcd0c0';
+                    colorSquare = colors[4];
                 }
                 else if (r < 0.9) {
-                    colorSquare = '#130e12';
+                    colorSquare = colors[3];
                 }
                 else {
-                    colorSquare = '#c0231a';
+                    colorSquare = colors[1];
                 }
                 oldColor = colorSquare;
             }
             else {
                 if (r < 0.2) {
-                    colorSquare = '#3a5bdc';
+                    colorSquare = colors[2];
                 }
                 else if (r < 0.6) {
-                    colorSquare = '#c4a41d';
+                    colorSquare = colors[0];
                 }
                 else if (r < 0.8) {
-                    colorSquare = '#130e12';
+                    colorSquare = colors[3];
                 }
                 else {
-                    colorSquare = '#dcd0c0';
+                    colorSquare = colors[4];
                 }
                 oldColor = colorSquare;
             }
             if (i == 15) {
-                colorSquare = '#130e12';
+                if (r < 0.6) {
+                    colorSquare = colors[3];
+                }
                 oldColor = colorSquare;
             }
             else if (i == 16) {
-                colorSquare = '#c4a41d';
+                if (r < 0.6) {
+                    colorSquare = colors[0];
+                }
                 oldColor = colorSquare;
             }
             else {
