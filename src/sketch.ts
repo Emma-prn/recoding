@@ -26,44 +26,56 @@ function draw() {
 	background('#dcd0c0'); // Blanc
   randomSeed(params.Random_Seed);
   let lineSquare = params.Nb_Square_per_Line;
-	for (var y = 0; y < height; y += height/lineSquare) {
+	for (let y = 0; y < height; y += height/lineSquare) {
     let colorLine = [];
-    let indexColor = 0;
     let nbColors = Math.floor((random() * 2) +2);
     for (let i = 0; i < nbColors; i++) {
       colorLine[i] = random(colors);
     }
     colorLine.push('#dcd0c0');
-    for (var x = 0; x < width; x += width/lineSquare) {
+    for (let i = 0; i < lineSquare; i++) {
+      let x = i*width/lineSquare;
       const r = random()
-      let colorSquare;
-      if (r < 0.6) {
-        colorSquare = '#dcd0c0'; // Proba d'avoir du blanc
-      }
-      else if (r < 0.7) {
-        colorSquare = '#130e12'; // Proba d'avoir du noir
-      }
-      else if (r < 0.8)
-      {
-        colorSquare = '#c4a41d'; // Proba d'avoir du jaune
-      }
-      else if (r < 0.9)
-      {
-        colorSquare = '#c0231a'; // Proba d'avoir du rouge
-      }
-      else {
-        colorSquare = '#3a5bdc'; // Proba d'avoir du bleue
-      }
-      if (x == 12 * width/lineSquare) {
-        if (r < 0.8) {
+      let colorSquare = '#c4a41d';
+      if (i == 0 || i == lineSquare-1) {
+        if (r < 0.7) {
+          colorSquare = '#dcd0c0'; 
+        }
+        else if (r < 0.9) {
           colorSquare = '#130e12';
         }
-      }
-      else if (x == 13 * width/lineSquare) {
-        if (r < 0.8) {
-          colorSquare = '#c4a41d';
+        else {
+          colorSquare = '#c0231a';
         }
       }
+      else if (i == 15) {
+        colorSquare = '#130e12';
+      }
+      else if (i == 16) {
+        colorSquare = '#c4a41d';
+      }
+      /*else {
+        if (r < 0.6) {
+          colorSquare = '#dcd0c0'; // Proba d'avoir du blanc
+        }
+        else if (r < 0.7) {
+          colorSquare = '#130e12'; // Proba d'avoir du noir
+        }
+        else if (r < 0.8)
+        {
+          colorSquare = '#c4a41d'; // Proba d'avoir du jaune
+        }
+        else if (r < 0.9)
+        {
+          colorSquare = '#c0231a'; // Proba d'avoir du rouge
+        }
+        else {
+          colorSquare = '#3a5bdc'; // Proba d'avoir du bleue
+        }
+      }*/
+      /*else if (x == 13 * width/lineSquare) {
+        colorSquare = '#c4a41d';
+      }*/
       fill(colorSquare);
       stroke(colorSquare);
       rect(x,y,width/lineSquare,height/lineSquare);
