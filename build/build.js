@@ -25,7 +25,6 @@ function draw() {
         for (var i = 0; i < nbColors; i++) {
             colorLine[i] = random(colors);
         }
-        console.log(colorLine);
         colorLine.push('#dcd0c0', '#dcd0c0', '#dcd0c0');
         for (var x = 0; x < width; x += width / lineSquare) {
             var indexColorCurrent = -1;
@@ -56,7 +55,7 @@ function draw() {
                 stroke(colorSquare);
             }
             rect(x, y, width / lineSquare, height / lineSquare);
-            suite = Math.floor((random() * 1) + 0.5);
+            suite = Math.floor(random(39)) >= 7 ? 1 : 0;
         }
     }
 }

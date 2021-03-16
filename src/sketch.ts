@@ -43,7 +43,7 @@ function draw() {
         fill(colorSquare);
         stroke(colorSquare);
       }
-      else if(suite == 3) {
+      else if(suite == 1) {
         let colorSquare = random(colorLine);
         indexColorCurrent = colorLine.indexOf(colorSquare);
         while (indexColorCurrent != indexColor) {
@@ -65,7 +65,7 @@ function draw() {
       }
       rect(x,y,width/lineSquare,height/lineSquare);
       //suite = Math.floor((random() * 1) +0.5);
-      suite = Math.floor(random(100))>= 30 ? 1 : 0;
+      suite = Math.floor(random(39))>= 7 ? 1 : 0;
 		}
 	}
 }
