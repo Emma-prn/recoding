@@ -21,23 +21,20 @@ const colors = [
   '#c0231a', // Rouge
   '#3a5bdc', // Bleue
   '#130e12', // Noir
+  '#dcd0c0', // Blanc
 ]
 function draw() {
 	background('#dcd0c0'); // Blanc
   randomSeed(params.Random_Seed);
   let lineSquare = params.Nb_Square_per_Line;
 	for (let y = 0; y < height; y += height/lineSquare) {
-    let colorLine = [];
-    let nbColors = Math.floor((random() * 2) +2);
-    for (let i = 0; i < nbColors; i++) {
-      colorLine[i] = random(colors);
-    }
-    colorLine.push('#dcd0c0');
+    const use_palette_1 = random() < 0.8;
     for (let i = 0; i < lineSquare; i++) {
       let x = i*width/lineSquare;
       const r = random()
-      let colorSquare = '#c4a41d';
-      if (i == 0 || i == lineSquare-1) {
+      let colorSquare;
+      let oldColor;
+      if (use_palette_1) {
         if (r < 0.7) {
           colorSquare = '#dcd0c0'; 
         }
@@ -47,35 +44,41 @@ function draw() {
         else {
           colorSquare = '#c0231a';
         }
+        oldColor = colorSquare;
       }
-      else if (i == 15) {
+      else {
+        if (r < 0.2) {
+          colorSquare = '#3a5bdc';
+        }
+        else if (r < 0.6) {
+          colorSquare = '#c4a41d';
+        }
+        else if (r < 0.8) {
+          colorSquare = '#130e12';
+        }
+        else {
+          colorSquare = '#dcd0c0';
+        }
+        oldColor = colorSquare;
+      }
+      if (i == 15) {
         colorSquare = '#130e12';
+        oldColor = colorSquare;
       }
       else if (i == 16) {
         colorSquare = '#c4a41d';
+        oldColor = colorSquare;
       }
-      /*else {
-        if (r < 0.6) {
-          colorSquare = '#dcd0c0'; // Proba d'avoir du blanc
-        }
-        else if (r < 0.7) {
-          colorSquare = '#130e12'; // Proba d'avoir du noir
-        }
-        else if (r < 0.8)
-        {
-          colorSquare = '#c4a41d'; // Proba d'avoir du jaune
-        }
-        else if (r < 0.9)
-        {
-          colorSquare = '#c0231a'; // Proba d'avoir du rouge
+      else {
+        if (r < 0.8) {
+          colorSquare = oldColor;
         }
         else {
-          colorSquare = '#3a5bdc'; // Proba d'avoir du bleue
+          const colorIdx = colors.indexOf(colorSquare);
+          const newIdx = (colorIdx + floor(random(1, colors.length-1))) % colors.length
+          colorSquare = colors[newIdx];
         }
-      }*/
-      /*else if (x == 13 * width/lineSquare) {
-        colorSquare = '#c4a41d';
-      }*/
+      }
       fill(colorSquare);
       stroke(colorSquare);
       rect(x,y,width/lineSquare,height/lineSquare);

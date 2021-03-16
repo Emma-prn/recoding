@@ -12,23 +12,20 @@ var colors = [
     '#c0231a',
     '#3a5bdc',
     '#130e12',
+    '#dcd0c0',
 ];
 function draw() {
     background('#dcd0c0');
     randomSeed(params.Random_Seed);
     var lineSquare = params.Nb_Square_per_Line;
     for (var y = 0; y < height; y += height / lineSquare) {
-        var colorLine = [];
-        var nbColors = Math.floor((random() * 2) + 2);
-        for (var i = 0; i < nbColors; i++) {
-            colorLine[i] = random(colors);
-        }
-        colorLine.push('#dcd0c0');
+        var use_palette_1 = random() < 0.8;
         for (var i = 0; i < lineSquare; i++) {
             var x = i * width / lineSquare;
             var r = random();
-            var colorSquare = '#c4a41d';
-            if (i == 0 || i == lineSquare - 1) {
+            var colorSquare = void 0;
+            var oldColor = void 0;
+            if (use_palette_1) {
                 if (r < 0.7) {
                     colorSquare = '#dcd0c0';
                 }
@@ -38,12 +35,40 @@ function draw() {
                 else {
                     colorSquare = '#c0231a';
                 }
+                oldColor = colorSquare;
             }
-            else if (i == 15) {
+            else {
+                if (r < 0.2) {
+                    colorSquare = '#3a5bdc';
+                }
+                else if (r < 0.6) {
+                    colorSquare = '#c4a41d';
+                }
+                else if (r < 0.8) {
+                    colorSquare = '#130e12';
+                }
+                else {
+                    colorSquare = '#dcd0c0';
+                }
+                oldColor = colorSquare;
+            }
+            if (i == 15) {
                 colorSquare = '#130e12';
+                oldColor = colorSquare;
             }
             else if (i == 16) {
                 colorSquare = '#c4a41d';
+                oldColor = colorSquare;
+            }
+            else {
+                if (r < 0.8) {
+                    colorSquare = oldColor;
+                }
+                else {
+                    var colorIdx = colors.indexOf(colorSquare);
+                    var newIdx = (colorIdx + floor(random(1, colors.length - 1))) % colors.length;
+                    colorSquare = colors[newIdx];
+                }
             }
             fill(colorSquare);
             stroke(colorSquare);
