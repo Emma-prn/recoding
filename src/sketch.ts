@@ -17,59 +17,46 @@ gui.add(params, "Download_Image")
 // -------------------
 
 const colors = [
-  '#c4a41d',
-  '#c0231a',
-  '#3a5bdc',
-  '#130e12',
+  '#c4a41d', // Jaune
+  '#c0231a', // Rouge
+  '#3a5bdc', // Bleue
+  '#130e12', // Noir
 ]
 function draw() {
-	background('#dcd0c0');
+	background('#dcd0c0'); // Blanc
   randomSeed(params.Random_Seed);
   let lineSquare = params.Nb_Square_per_Line;
 	for (var y = 0; y < height; y += height/lineSquare) {
     let colorLine = [];
-    let suite = 2;
     let indexColor = 0;
     let nbColors = Math.floor((random() * 2) +2);
     for (let i = 0; i < nbColors; i++) {
       colorLine[i] = random(colors);
     }
-    colorLine.push('#dcd0c0','#dcd0c0','#dcd0c0');
+    colorLine.push('#dcd0c0');
     for (var x = 0; x < width; x += width/lineSquare) {
-      let indexColorCurrent = -1;
-      if (x == 0) {
-        let colorSquare = random(colorLine);
-        indexColor = colorLine.indexOf(colorSquare);
-        fill(colorSquare);
-        stroke(colorSquare);
+      const r = random()
+      let colorSquare;
+      if (r < 0.7) {
+        colorSquare = '#dcd0c0' // Proba de 0.7 d'avoir du blanc
       }
-      else if(suite == 1) {
-        let colorSquare = random(colorLine);
-        indexColorCurrent = colorLine.indexOf(colorSquare);
-        while (indexColorCurrent != indexColor) {
-          colorSquare = random(colorLine);
-          indexColorCurrent = colorLine.indexOf(colorSquare);
-        }
-        fill(colorSquare);
-        stroke(colorSquare);
+      else if (r < 0.9) {
+        colorSquare = '#130e12' // Proba de 0.9 - 0.7 = 0.2 d'avoir du noir
       }
-      else if(suite == 0) {
-        let colorSquare = random(colorLine);
-        indexColorCurrent = colorLine.indexOf(colorSquare);
-        while (indexColorCurrent == indexColor){
-          colorSquare = random(colorLine);
-          indexColorCurrent = colorLine.indexOf(colorSquare);
-        }
-        fill(colorSquare);
-        stroke(colorSquare);
+      else {
+        colorSquare = '#c0231a' // Proba de 1 - 0.9 = 0.1 d'avoir du rouge
       }
-      else if (x == width/3) {
+      fill(colorSquare);
+      stroke(colorSquare);
+      if (x == 12 * width/lineSquare) {
         fill('#130e12');
         stroke('#130e12');
       }
+      else if (x == 13 * width/lineSquare) {
+        fill('#c4a41d');
+        stroke('#c4a41d');
+      }
       rect(x,y,width/lineSquare,height/lineSquare);
-      //suite = Math.floor((random() * 1) +0.5);
-      suite = Math.floor(random(50))>= 18 ? 1 : 0;
 		}
 	}
 }

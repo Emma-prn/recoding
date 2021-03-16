@@ -19,47 +19,35 @@ function draw() {
     var lineSquare = params.Nb_Square_per_Line;
     for (var y = 0; y < height; y += height / lineSquare) {
         var colorLine = [];
-        var suite = 2;
         var indexColor = 0;
         var nbColors = Math.floor((random() * 2) + 2);
         for (var i = 0; i < nbColors; i++) {
             colorLine[i] = random(colors);
         }
-        colorLine.push('#dcd0c0', '#dcd0c0', '#dcd0c0');
+        colorLine.push('#dcd0c0');
         for (var x = 0; x < width; x += width / lineSquare) {
-            var indexColorCurrent = -1;
-            if (x == 0) {
-                var colorSquare = random(colorLine);
-                indexColor = colorLine.indexOf(colorSquare);
-                fill(colorSquare);
-                stroke(colorSquare);
+            var r = random();
+            var colorSquare = void 0;
+            if (r < 0.7) {
+                colorSquare = '#dcd0c0';
             }
-            else if (suite == 1) {
-                var colorSquare = random(colorLine);
-                indexColorCurrent = colorLine.indexOf(colorSquare);
-                while (indexColorCurrent != indexColor) {
-                    colorSquare = random(colorLine);
-                    indexColorCurrent = colorLine.indexOf(colorSquare);
-                }
-                fill(colorSquare);
-                stroke(colorSquare);
+            else if (r < 0.9) {
+                colorSquare = '#130e12';
             }
-            else if (suite == 0) {
-                var colorSquare = random(colorLine);
-                indexColorCurrent = colorLine.indexOf(colorSquare);
-                while (indexColorCurrent == indexColor) {
-                    colorSquare = random(colorLine);
-                    indexColorCurrent = colorLine.indexOf(colorSquare);
-                }
-                fill(colorSquare);
-                stroke(colorSquare);
+            else {
+                colorSquare = '#c0231a';
             }
-            else if (x == width / 3) {
+            fill(colorSquare);
+            stroke(colorSquare);
+            if (x == 12 * width / lineSquare) {
                 fill('#130e12');
                 stroke('#130e12');
             }
+            else if (x == 13 * width / lineSquare) {
+                fill('#c4a41d');
+                stroke('#c4a41d');
+            }
             rect(x, y, width / lineSquare, height / lineSquare);
-            suite = Math.floor(random(50)) >= 18 ? 1 : 0;
         }
     }
 }
