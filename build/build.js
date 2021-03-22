@@ -33,13 +33,18 @@ function draw() {
                     colorSquare = colors[3];
                 }
             }
-            else if (i == 16) {
-                if (r < 0.6) {
+            else if (i == 16 || i == 17 || i == 18) {
+                if (r < 0.8) {
                     colorSquare = colors[0];
                 }
             }
+            else if (i == 30) {
+                if (r < 0.15) {
+                    colorSquare = colors[1];
+                }
+            }
             else {
-                if (r < 0.2) {
+                if (r < 0.05) {
                     var colorIdx = colors.indexOf(colorSquare);
                     var newIdx = (colorIdx + floor(random(1, colors.length - 1))) % colors.length;
                     colorSquare = colors[newIdx];
@@ -54,7 +59,7 @@ function draw() {
 function pickColor(use_palette_1) {
     var r = random();
     if (use_palette_1) {
-        if (r < 0.7) {
+        if (r < 0.8) {
             return colors[4];
         }
         else if (r < 0.9) {
@@ -65,13 +70,13 @@ function pickColor(use_palette_1) {
         }
     }
     else {
-        if (r < 0.2) {
+        if (r < 0.15) {
             return colors[2];
         }
-        else if (r < 0.6) {
+        else if (r < 0.85) {
             return colors[0];
         }
-        else if (r < 0.8) {
+        else if (r < 0.95) {
             return colors[3];
         }
         else {
@@ -84,6 +89,18 @@ function setup() {
 }
 function windowResized() {
     p6_ResizeCanvas();
+}
+function keyPressed() {
+    if (keyCode === 107 && params.Nb_Square_per_Line < 40) {
+        params.Nb_Square_per_Line++;
+    }
+    else if (keyCode === 109 && params.Nb_Square_per_Line > 5) {
+        params.Nb_Square_per_Line--;
+    }
+    else if (keyCode === 32) {
+        params.Random_Seed++;
+    }
+    return false;
 }
 var __ASPECT_RATIO = 1;
 var __MARGIN_SIZE = 25;
