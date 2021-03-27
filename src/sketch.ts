@@ -60,8 +60,14 @@ function draw() {
           colorSquare = colors[newIdx];
         }
       }
-      fill(colorSquare);
-      stroke(colorSquare);
+      if (i >= 16 && colorSquare == colors[0] /*jaune*/ && r > 0.95) {
+        fill(colors[3] /*black*/)
+        stroke(colors[3] /*black*/)
+      }
+      else {
+        fill(colorSquare) // ton fill normal
+        stroke(colorSquare);
+      }
       rect(x,y,width/lineSquare,height/lineSquare);
 		}
 	}
