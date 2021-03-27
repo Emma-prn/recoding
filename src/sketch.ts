@@ -31,7 +31,7 @@ function draw() {
 	for (let y = 0; y < height; y += height/lineSquare) {
     const use_palette_1 = random() < 0.8;
     let colorSquare: string;
-      colorSquare = pickColor(use_palette_1);
+    colorSquare = pickColor(use_palette_1);
     for (let i = 0; i < lineSquare; i++) {
       if (random() < 0.05) {
         colorSquare = pickColor(use_palette_1);
@@ -60,8 +60,14 @@ function draw() {
           colorSquare = colors[newIdx];
         }
       }
-      fill(colorSquare);
-      stroke(colorSquare);
+      if (i >= 16 && colorSquare == colors[0] && r > 0.95) {
+        fill(colors[3])
+        stroke(colors[3])
+      }
+      else {
+        fill(colorSquare)
+        stroke(colorSquare);
+      }
       rect(x,y,width/lineSquare,height/lineSquare);
 		}
 	}
@@ -113,8 +119,8 @@ function keyPressed() {
   else if (keyCode === 109 && params.Nb_Square_per_Line > 5) {
     params.Nb_Square_per_Line--; 
   }
-  else if (keyCode === 32) {
+  else if(keyCode === 32){
     params.Random_Seed++;
   }
-  return false; // prevent any default behaviour
+  return false;
 }

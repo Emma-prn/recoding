@@ -50,8 +50,14 @@ function draw() {
                     colorSquare = colors[newIdx];
                 }
             }
-            fill(colorSquare);
-            stroke(colorSquare);
+            if (i >= 16 && colorSquare == colors[0] && r > 0.95) {
+                fill(colors[3]);
+                stroke(colors[3]);
+            }
+            else {
+                fill(colorSquare);
+                stroke(colorSquare);
+            }
             rect(x, y, width / lineSquare, height / lineSquare);
         }
     }
