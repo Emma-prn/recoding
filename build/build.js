@@ -7,6 +7,7 @@ var params = {
 gui.add(params, "Nb_Square_per_Line", 5, 39, 1);
 gui.add(params, "Random_Seed", 0, 10, 1);
 gui.add(params, "Download_Image");
+var modified_squares = [];
 var colors = [
     '#c4a41d',
     '#c0231a',
@@ -61,6 +62,11 @@ function draw() {
             rect(x, y, width / lineSquare, height / lineSquare);
         }
     }
+    modified_squares.forEach(function (sq) {
+        fill(sq.col);
+        stroke(sq.col);
+        rect(sq.x, sq.y, width / lineSquare, height / lineSquare);
+    }, this);
 }
 function pickColor(use_palette_1) {
     var r = random();
@@ -107,6 +113,14 @@ function keyPressed() {
         params.Random_Seed++;
     }
     return false;
+}
+function mousePressed() {
+    var w = width / params.Nb_Square_per_Line;
+    var x = floor(mouseX / w) * w;
+    var y = floor(mouseY / w) * w;
+    var newSquare = { x: x, y: y, col: '#130e12' };
+    modified_squares.push(newSquare);
+    console.log(modified_squares);
 }
 var __ASPECT_RATIO = 1;
 var __MARGIN_SIZE = 25;

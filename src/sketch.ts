@@ -12,6 +12,14 @@ gui.add(params,"Nb_Square_per_Line",5,39,1)
 gui.add(params,"Random_Seed",0,10,1)
 gui.add(params, "Download_Image")
 
+interface Square {
+  x: number,
+  y: number,
+  col: string,
+}
+
+let modified_squares: Square[] = [];
+
 // -------------------
 //       Drawing
 // -------------------
@@ -71,7 +79,13 @@ function draw() {
       rect(x,y,width/lineSquare,height/lineSquare);
 		}
 	}
+  modified_squares.forEach(function(sq) {
+    fill(sq.col);
+    stroke(sq.col);
+    rect(sq.x,sq.y,width/lineSquare,height/lineSquare);
+  },this);
 }
+
 function pickColor(use_palette_1: boolean): string{
   let r = random();
   if (use_palette_1) {
@@ -123,4 +137,13 @@ function keyPressed() {
     params.Random_Seed++;
   }
   return false;
+}
+
+function mousePressed() {
+  const w = width / params.Nb_Square_per_Line;
+  const x = floor(mouseX / w) * w;
+  const y = floor(mouseY / w) * w;
+  let newSquare = {x: x, y: y, col: '#130e12'};
+  modified_squares.push(newSquare);
+  console.log(modified_squares);
 }
