@@ -143,7 +143,7 @@ function mousePressed() {
   const w = width / params.Nb_Square_per_Line;
   const x = floor(mouseX / w) * w;
   const y = floor(mouseY / w) * w;
-  let newSquare = {x: x, y: y, col: '#130e12'};
+  let newSquare = {x: x, y: y, col: '#9c2d89'};
   modified_squares.push(newSquare);
   console.log(modified_squares);
 }

@@ -118,7 +118,7 @@ function mousePressed() {
     var w = width / params.Nb_Square_per_Line;
     var x = floor(mouseX / w) * w;
     var y = floor(mouseY / w) * w;
-    var newSquare = { x: x, y: y, col: '#130e12' };
+    var newSquare = { x: x, y: y, col: '#9c2d89' };
     modified_squares.push(newSquare);
     console.log(modified_squares);
 }
